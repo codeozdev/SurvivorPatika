@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SurvivorPatika.DTO;
+using SurvivorPatika.MockData;
 using SurvivorPatika.Models;
 
 namespace SurvivorPatika.Controllers
@@ -9,26 +10,8 @@ namespace SurvivorPatika.Controllers
     [ApiController]
     public class CompetitorController : ControllerBase
     {
-        private static List<Competitors> _competitors =
-        [
-            new Competitors
-            {
-                Id = 1, CategoryId = 1, FirstName = "Acun", LastName = "Ilıcalı", IsDeleted = false,
-                CreatedDate = DateTime.Now, ModifiedDate = DateTime.Now
-            },
-
-            new Competitors
-            {
-                Id = 2, CategoryId = 1, FirstName = "Aleyna", LastName = "Avcı", IsDeleted = false,
-                CreatedDate = DateTime.Now, ModifiedDate = DateTime.Now
-            },
-
-            new Competitors
-            {
-                Id = 3, CategoryId = 2, FirstName = "Elif", LastName = "Demirtaş", IsDeleted = false,
-                CreatedDate = DateTime.Now, ModifiedDate = DateTime.Now
-            },
-        ];
+ 
+        private readonly List<Competitors> _competitors = CompetitorService.Competitors;
 
         [HttpGet]
         public IActionResult Get()
